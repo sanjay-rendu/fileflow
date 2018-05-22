@@ -30,7 +30,7 @@ class FileStorageDriver(StorageDriver):
             self.prefix,
             dag_id,
             task_id,
-            data_id +'-' + self.execution_date_string(execution_date)
+            data_id +'-' + str(self.execution_date_string(execution_date))
         )
 
     def get_path(self, dag_id, task_id):
