@@ -19,7 +19,7 @@ class DiveOperator(BaseOperator):
     This is intended as a base class for eg :py:class:`fileflow.operators.DivePythonOperator`.
     """
 
-    def __init__(self, data_dependencies, *args, **kwargs):
+    def __init__(self, data_dependencies = None, *args, **kwargs):
         super(DiveOperator, self).__init__(*args, **kwargs)
 
         # The upstream dependencies
