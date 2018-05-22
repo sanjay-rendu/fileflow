@@ -180,7 +180,7 @@ class TaskRunner(object):
 
         self.write_json(json)
 
-    def write_pandas_csv(self, data):
+    def write_pandas_csv(self, data, data_id):
         """
         Specifically writes a csv from a pandas dataframe to the default
         output file in a standard manner.
@@ -190,7 +190,7 @@ class TaskRunner(object):
         # When you pass filename=None, the result is returned as a string
         output = clean_and_write_dataframe_to_csv(data=data, filename=None)
 
-        self.write_file(output, content_type='text/csv')
+        self.write_file(output, data_id, content_type='text/csv')
 
     def write_json(self, data):
         """
