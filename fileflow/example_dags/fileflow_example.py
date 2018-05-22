@@ -48,11 +48,22 @@ class TaskRunnerReadExample(TaskRunner):
 
 
 # Now let's define a DAG
-dag = DAG(
-    dag_id='fileflow_example',
-    start_date=datetime(2030, 1, 1),
-    schedule_interval=timedelta(minutes=1)
-)
+default_args = {
+    'owner': 'sanjay',
+    'depends_on_past': False,
+    'start_date': datetime(2018, 5, 21),
+    'email': ['airflow@example.com'],
+    'email_on_failure': False,
+    'email_on_retry': False,
+    'retries': 1,
+    'retry_delay': timedelta(minutes=5),
+    # 'queue': 'bash_queue',
+    # 'pool': 'backfill',
+    # 'priority_weight': 10,
+    # 'end_date': datetime(2016, 1, 1),
+}
+
+dag = DAG('fileflow', default_args=default_args)
 
 # The tasks in this DAG will use DivePythonOperator as the operator,
 # which knows how to send a TaskRunner anything in the `data_dependencies` keyword
