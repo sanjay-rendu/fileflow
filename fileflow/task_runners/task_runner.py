@@ -99,9 +99,10 @@ class TaskRunner(object):
         if dag_id is None:
             dag_id = self.task_instance.dag_id
 
-        task_id = self.data_dependencies[data_dependency_key]
+        task_id = self.data_dependencies[data_dependency_key][0]
+        data_id = self.data_dependencies[data_dependency_key][1]
 
-        return self.storage.read(dag_id, task_id, self.date, encoding=encoding)
+        return self.storage.read(dag_id, task_id, data_id, self.date, encoding=encoding)
 
     def read_upstream_pandas_csv(self, data_dependency_key, dag_id=None, encoding='utf-8'):
         """
@@ -145,7 +146,7 @@ class TaskRunner(object):
             )
         )
 
-    def write_file(self, data, content_type='text/plain'):
+    def write_file(self, data, data_id, content_type='text/plain'):
         """
         Writes the data out to the correct file.
 
@@ -157,6 +158,7 @@ class TaskRunner(object):
             self.task_instance.dag_id,
             self.task_instance.task_id,
             self.date,
+            data_id,
             data,
             content_type=content_type
         )
