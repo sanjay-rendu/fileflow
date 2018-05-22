@@ -19,14 +19,14 @@ class DiveOperator(BaseOperator):
     This is intended as a base class for eg :py:class:`fileflow.operators.DivePythonOperator`.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, data_dependencies, *args, **kwargs):
         super(DiveOperator, self).__init__(*args, **kwargs)
 
         # The upstream dependencies
         # These must always be specified
         # Dictionary can contain any number of keys which must be redirected
         # in the business logic to their read/parse methods.
-        self.data_dependencies = kwargs.pop('data_dependencies', {})
+        self.data_dependencies = data_dependencies
 
         # private storage driver attribute; lazy loaded by the storage property or set by the storage property setter
         self._storage = None
