@@ -77,3 +77,6 @@ t2 = DivePythonOperator(
     owner="airflow",
     dag=dag
 )
+
+t2.set_upstream(t1)
+
