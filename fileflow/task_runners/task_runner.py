@@ -157,8 +157,8 @@ class TaskRunner(object):
         self.storage.write(
             self.task_instance.dag_id,
             self.task_instance.task_id,
-            self.date,
             data_id,
+            self.date,
             data,
             content_type=content_type
         )
