@@ -41,9 +41,10 @@ class TaskRunner(object):
         if dag_id is None:
             dag_id = self.task_instance.dag_id
 
-        task_id = self.data_dependencies[data_dependency]
+        task_id = self.data_dependencies[data_dependency][0]
+        data_id = self.data_dependencies[data_dependency][1]
 
-        return self.storage.get_filename(dag_id, task_id, self.date)
+        return self.storage.get_filename(dag_id, task_id, data_id, self.date)
 
     def get_output_filename(self):
         """
